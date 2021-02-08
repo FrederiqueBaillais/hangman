@@ -7,48 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hangman made by Frederique in BeCode" />
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div class="row col-md-12 padding:20px;margin-left:30px">
-        <div class='row text-center megabloc'>
-            <div class='col col-md-12 blocunique'>
-                <h1>Le pendu (Hangman)</h1>>
+    <!-- Si j'utilise bootstrap, TOUJOURS mettre le link dans le head !! -->
+    <div class="container padding:20px;margin-left:30px">
+        <!-- Titre de la page -->
+        <div class='row text-center'>
+            <div class='col col-md-12'>
+                <h1>Le pendu (Hangman)</h1>
             </div>
         </div>
 
-        <div class='row text-center megabloc'>
-            <div class='col col-md-12 blocunique'>
+        <!-- Instructions -->
+        <div class='row text-center'>
+            <div class='col col-md-12'>
                 <h2>Règles du jeu</h2>
-                <p>Deviner le mot que l'on nous propose. On n'a que 8 essais avant de perdre.</p>
+                <p>Deviner le mot proposé. Attention : 8 erreurs possibles avant de perdre !</p>
             </div>
         </div>
 
         <!-- Jeu en lui-même -->
-        <div class='row text-center megabloc'>
-            <div class='col col-md-4 megabloc'>
-                <div class='col col-md-12 blocunique'>
-                    Lettre de l'alphabet à proposer
-                </div>
-                <div class='col col-md-12 blocunique'>
-                    Lettre déjà proposées
-                </div>
+        <div class='row'>
+            <div class='col-4 col-md-4 alphabet'>
+                Lettre de l'alphabet à proposer
+                <div class="btn-primary"></div>
+                <div class="btn-secondary"></div>
             </div>
-            <div class='col col-md-7 offset-md-1 megabloc'>
-                <div class='col col-md-12 blocunique'>
-                    Hangman
-                </div>
+            <div class='col-8 col-md-8 imageHangman'>
+                <img src="assets/img/welcome.png" style="width: 100%;" alt="Welcome to the hangman">
             </div>
         </div>
 
-        <div class='row text-center megabloc'>
-            <div class='col col-md-12 blocunique'>
-                Footer
-            </div>
-        </div>
-
-    </div>>
+    </div>
 
 
     <script src="assets/js/script.js"></script>
