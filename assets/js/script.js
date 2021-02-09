@@ -101,26 +101,37 @@
         }
     }
 
+
+
     // afficher l'alphabet cliquable
     function letterscliquable() {
         myLetters = document.getElementById('alphabetACliquer');
         letters = document.createElement('div');
 
-        for (let cptAlphabet = 0; cptAlphabet < alphabet.length; cptAlphabet++) {
+        for (let i = 0; i < alphabet.length; i++) {
             letters.id = 'alphabet';
             list = document.createElement('button');
-            list.id = 'letter';
-            list.innerHTML = alphabet[cptAlphabet];
+            list.className = "ltr";
+            list.innerHTML = alphabet[i];
             check();
             myLetters.appendChild(letters);
             letters.appendChild(list);
         }
+
+        const selector = document.querySelectorAll('.ltr');
+        selector.forEach(button => {
+            document.getElementById('alphabetACliquer').addEventListener("click", () => {
+                // return la lettre cliquée
+            });
+        });
     }
 
     // met en place le hangman pour pouvoir le jouer
     function play() {
         // efface l'image de bienvenue pour laisser place au jeu
-        imgWelcome.style.display = "none"; // ?
+        imgWelcome.style.display = "none";
+        // affiche l'alphabet à jouer
+        letterscliquable();
         // va chercher le mot à trouver
         let word = randomTown();
         // vérifie que le mot qui a été trouvé
@@ -129,15 +140,24 @@
         motSplite = word.split('');
         // vérifie que le mot a bien été splité lettre par lettre
         console.log(motSplite);
-
-        // affiche chaque truc comme les lettres
-        motSplite.forEach(element => {
+        // affiche des trous à la place des lettres
+        for (let i = 0; i < motSplite.length; i++) {
             let hole = document.createElement('span');
-            hole.style.borderBottom = true;
+            hole.className = "styleHole"; //classList.add
+            hole.innerHTML = `<p id="${motSplite[i]+i}"></p>`;
+            document.getElementById("toFind").appendChild(hole);
+        }
+        // appel de la fonction check pour vérifier si la lettre y est
+        check();
 
-        });
-        // affiche l'alphabet à jouer
-        letterscliquable();
+
+
+
+
+
+
+
+
 
         // essais
         guesses = [];
