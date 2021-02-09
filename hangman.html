@@ -32,20 +32,17 @@
         <!-- Jeu en lui-même -->
         <div class='row'>
             <div class='col-4 col-md-4 alphabet'>
-                <!-- (B2) AVAILABLE CHARACTERS -->
-                <div class="char">
-
-                </div>
-                <!-- (B3) RESET & LIVES -->
-                <div class="bottom">
-                    <input type="button" value="Reset" id="reset" disabled/>
+                <!-- Commencer la partie et nombre de vies restantes -->
+                <div class="informations">
+                    <button id="beginNew">Commencer la partie</button>
                     <div>
-                        Erreurs possibles restantes: <span id="lifes"></span>
+                        Nombre de vies restantes: <span id="lives"><!-- play.lives et ensuite check.lives --></span>
                     </div>
+                    <div id="alphabetACliquer"></div>
                 </div>
             </div>
             <div class='col-8 col-md-8 imageHangman'>
-                <img src="assets/img/welcome.png" style="width: 100%;" alt="Welcome to the hangman-game">
+                <img src="assets/img/welcome.png" id="welcome" style="width: 100%;" alt="Welcome to the hangman-game">
             </div>
         </div>
 

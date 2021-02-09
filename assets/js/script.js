@@ -1,13 +1,14 @@
-var hangman = {
     // Définition des variables
     let error = 0; // pour le compteur des erreurs
     let cptGallery = 0; // pour le compteur des images à afficher pour le hangman
+    const imgWelcome = document.getElementById("welcome"); // image de bienvenue
+    const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; // alphabet à cliquer
+    let motSplite = []; // array des lettres du mot à trouver
 
 
     // choix aléatoire du pays à trouver
-    function paysAleatoire() {
-        var hasard = Math.floor(Math.random() * 10);
-        let pays = [
+    function randomTown() {
+        const pays = [
             "belgique",
             "france",
             "luxembourg",
@@ -19,35 +20,13 @@ var hangman = {
             "autriche",
             "pologne"
         ];
-        let secretTown = pays[hasard];
+        const hasard = Math.floor(Math.random() * pays.length);
+        const secretTown = pays[hasard];
         return (secretTown);
     }
-
-    // choix aléatoire du pays à trouver
-    function paysAleatoire() {
-        var hasard = Math.floor(Math.random() * 10);
-        let pays = [
-            "belgique",
-            "france",
-            "luxembourg",
-            "allemagne",
-            "suisse",
-            "italie",
-            "espagne",
-            "portugal",
-            "autriche",
-            "pologne",
-        ];
-        let secretTown = pays[hasard];
-        return (secretTown);
-    }
-
-    // écrire les blancs à la place des lettres
-
 
     // caroussel d'images du hangman en fonction des erreurs commises par l'utilisateur
     let gallery = [
-        "assets/img/welcome.png",
         "assets/img/hangman7.png",
         "assets/img/hangman6.png",
         "assets/img/hangman5.png",
@@ -63,36 +42,114 @@ var hangman = {
 
     // boucle pour l'affichage du pendu
 
-    error8() {
-        // 8ème erreur, affichage de l'image hangman.png
-        gallery[7];
-        // affichage du compteur d'erreurs possibles restantes "nombre d'erreurs encore possibles : 0"
-        error++;
-        // affichage "You lose"
-        .innerHTML = "Sorry, you lose. Let's try again !"
-            // affichage du mot à trouver
-            .innerHTML = "Le mot à trouver était : " + secretTown;
-    };
+    // error8() {
+    //     // 8ème erreur, affichage de l'image hangman.png
+    //     gallery[7];
+    //     // affichage du compteur d'erreurs possibles restantes "nombre d'erreurs encore possibles : 0"
+    //     error++;
+    //     // affichage "You lose"
+    //     .innerHTML = "Sorry, you lose. Let's try again !";
+    //     // affichage du mot à trouver
+    //     .innerHTML = "Le mot à trouver était : " + secretTown;
+    //     // arrêter le jeu, griser toutes les lettres et les rendre incliquables
+
+    // };
+
+    // quand on clique sur une lettre, récupérer la lettre
+    // et faire la recherche secretTown.forEach(element)
 
     // boucle compteur error
     // si la lettre n'est pas dans le mot
-    secretTown.forEach(element => {
-        if (element pas dans secretTown) {
-            gallery[cptGallery + 1];
-            error++;
-        } else if (element dans secretTown) {
-            afficher la lettre au bon endroit dans le mot;
-            appel de la fonction de choix;
-        }
-    });
+    // secretTown.forEach(element => {
+    //     if (element pas dans secretTown) {
+    //         gallery[cptGallery + 1];
+    //         error++;
+    //     } else if (element dans secretTown) {
+    //         afficher la lettre au bon endroit dans le mot;
+    //         appel de la fonction de choix;
+    //     }
+    // });
 
-    if (error == 8) {
-        error8;
-        perdu;
-    }
+    // if (error == 8) {
+    //     error8;
+    //     perdu;
+    // }
 
     // quelle que soit la lettre, bonne ou mauvaise, sélectionnée, griser la lettre choisie
-    this.disabled = true;
-}
+    // quand c'est onClick
+    // this.disabled = true;
 
-window.addEventListener("DOMContentLoaded", hangman.init);
+    function check() {
+        list.onclick = () => {
+            let guess = (this.innerHTML);
+            this.setAttribute("class", "active");
+            this.onclick = null;
+            for (let i = 0; i < motSplite.length; i++) {
+                if (motSplite[i] === guess) {
+                    guesses[i].innerHTML = guess;
+                    counter++;
+                }
+            }
+            let j = motSplite.indexOf(guess);
+            if (j === -1) {
+                lives--;
+                comments();
+                animate();
+            } else {
+                comments();
+            }
+        }
+    }
+
+    // afficher l'alphabet cliquable
+    function letterscliquable() {
+        myLetters = document.getElementById('alphabetACliquer');
+        letters = document.createElement('div');
+
+        for (let cptAlphabet = 0; cptAlphabet < alphabet.length; cptAlphabet++) {
+            letters.id = 'alphabet';
+            list = document.createElement('button');
+            list.id = 'letter';
+            list.innerHTML = alphabet[cptAlphabet];
+            check();
+            myLetters.appendChild(letters);
+            letters.appendChild(list);
+        }
+    }
+
+    // met en place le hangman pour pouvoir le jouer
+    function play() {
+        // efface l'image de bienvenue pour laisser place au jeu
+        imgWelcome.style.display = "none"; // ?
+        // va chercher le mot à trouver
+        let word = randomTown();
+        // vérifie que le mot qui a été trouvé
+        console.log(word);
+        // sélectionne chaque caractère du mot à trouver en lettre et les insère dans un tableau
+        motSplite = word.split('');
+        // vérifie que le mot a bien été splité lettre par lettre
+        console.log(motSplite);
+
+        // affiche chaque truc comme les lettres
+        motSplite.forEach(element => {
+            let hole = document.createElement('span');
+            hole.style.borderBottom = true;
+
+        });
+        // affiche l'alphabet à jouer
+        letterscliquable();
+
+        // essais
+        guesses = [];
+        // nombre de vies restantes
+        lives = 8;
+        counter = 0;
+        space = 0;
+        // result();
+        // comments();
+        // canvas();
+    }
+
+    document.getElementById("beginNew").addEventListener("click", () => {
+        play();
+    });
