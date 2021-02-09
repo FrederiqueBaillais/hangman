@@ -24,8 +24,10 @@
         <!-- Instructions -->
         <div class='row text-center'>
             <div class='col col-md-12'>
-                <h2>Règles du jeu</h2>
-                <p>Deviner le mot proposé. Attention : 8 erreurs possibles avant de perdre !</p>
+                <h2 id="regle">Règles du jeu</h2>
+                <p id="consigne">Deviner le mot proposé. Attention : 8 erreurs possibles avant de perdre !</p>
+                <p id="indice">Indice : </p>
+                <p id="pays">Pays</p>
             </div>
         </div>
 
@@ -36,14 +38,15 @@
                 <div class="informations">
                     <button id="beginNew">Nouvelle partie</button><button id="newPart">Recharger une partie</button>
                     <div>
-                        Nombre de vies restantes: <span id="lives"></span>
+                        <span id="lives"></span>
                     </div>
                     <div id="alphabetACliquer"></div>
                 </div>
             </div>
-            <div class='col-8 col-md-8 imageHangman'>
+            <div class='col-8 col-md-8' id='imageHangman'>
                 <div id='toFind' class='d-flex'></div>
                 <img src="assets/img/welcome.png" id="welcome" style="width: 100%;" alt="Welcome to the hangman-game">
+                <img src='assets/img/team-goal06.png' id='pendu'>
             </div>
         </div>
 

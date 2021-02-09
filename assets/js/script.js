@@ -5,6 +5,16 @@
     const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; // alphabet à cliquer
     let motSplite = []; // array des lettres du mot à trouver
     let showLives = document.getElementById("lives");
+    let gallery = [ // caroussel d'images du hangman en fonction des erreurs commises par l'utilisateur
+        "assets/img/hangman7.png",
+        "assets/img/hangman6.png",
+        "assets/img/hangman5.png",
+        "assets/img/hangman4.png",
+        "assets/img/hangman3.png",
+        "assets/img/hangman2.png",
+        "assets/img/hangman1.png",
+        "assets/img/hangman0.png",
+    ];
 
 
     // choix aléatoire du pays à trouver
@@ -26,52 +36,65 @@
         return (secretTown);
     }
 
-    // caroussel d'images du hangman en fonction des erreurs commises par l'utilisateur
-    let gallery = [
-        "assets/img/hangman7.png",
-        "assets/img/hangman6.png",
-        "assets/img/hangman5.png",
-        "assets/img/hangman4.png",
-        "assets/img/hangman3.png",
-        "assets/img/hangman2.png",
-        "assets/img/hangman1.png",
-        "assets/img/hangman0.png",
-    ];
-
-    let newImages = document.getElementsByClassName("imageHangman")[0];
-
     function animate() {
         // affichage des images en fonction des des erreurs
         // gallery[cptGallery + 1];
         // nombre de vies -1
+        //newImages = gallery[i];
+        //console.log(newImages2);
+        // afficher en fonction du nombre de vies restantes
+        console.log(lives);
+        if (lives === 7) {
+            console.log('lives = 7');
+            document.getElementById('pendu').innerHTML = gallery[0];
 
-
-
+        }
+        //     if (lives == 6) {
+        //         document.getElementById('welcome').innerHTML = gallery[1];
+        //     }
+        //     if (lives == 5) {
+        //         document.getElementById('welcome').innerHTML = gallery[2];
+        //     }
+        //     if (lives == 4) {
+        //         document.getElementById('welcome').innerHTML = gallery[3];
+        //     }
+        //     if (lives == 3) {
+        //         document.getElementById('welcome').innerHTML = gallery[4];
+        //     }
+        //     if (lives == 2) {
+        //         document.getElementById('welcome').innerHTML = gallery[5];
+        //     }
+        //     if (lives == 1) {
+        //         document.getElementById('welcome').innerHTML = gallery[6];
+        //     }
+        //     if (lives == 0) {
+        //         document.getElementById('welcome').innerHTML = gallery[7];
+        //     }
     }
 
     // fin du jeu, plus de vie ou trouvé toutes les lettres
     function fin() {
         // disabled toutes les lettres restantes
-        // button.disabled = true;
         // la seule chose qu'on peut faire c'est cliquer sur le bouton newPart
-
-
-
-
-
+        const selector = document.querySelectorAll('.ltr');
+        console.log(selector);
+        selector.forEach(button => {
+            // le bouton n'est plus cliquable
+            button.disabled = true;
+        });
     }
 
 
     // montre le nombre de vies restantes et affiche Win ou Lose
     function comments() {
         // nombre de vies et fin
-        showLives.innerHTML = "You have " + lives + " lives";
+        showLives.innerHTML = "Vous avez " + lives + " vies.";
         if ((lives < 1) && (space > 0)) {
             showLives.innerHTML = "Game Over...";
             fin();
         }
         if ((lives > 0) && (space < 1)) {
-            showLives.innerHTML = "You Win!";
+            showLives.innerHTML = "Gagné !";
             fin();
         }
     }
@@ -95,6 +118,7 @@
         if (counter == 0) {
             lives--;
             comments();
+            animate();
         }
     }
 
@@ -128,12 +152,10 @@
                 check(userChoice);
             });
         });
-
     }
 
     // met en place le hangman pour pouvoir le jouer
     function play() {
-
         let newPart = document.getElementById('newPart');
         let beginNew = document.getElementById('beginNew');
         newPart.style.display = 'block';
@@ -165,6 +187,10 @@
         // result();
         comments();
     }
+
+    document.getElementById("newPart").addEventListener("click", () => {
+        document.location.reload();
+    });
 
     document.getElementById("beginNew").addEventListener("click", () => {
         play();
