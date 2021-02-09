@@ -5,3 +5,7 @@
 }
 
 .bdrHole {}
+
+#newPart {
+    display: none;
+}

@@ -4,6 +4,7 @@
     const imgWelcome = document.getElementById("welcome"); // image de bienvenue
     const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; // alphabet à cliquer
     let motSplite = []; // array des lettres du mot à trouver
+    let showLives = document.getElementById("lives");
 
 
     // choix aléatoire du pays à trouver
@@ -39,69 +40,63 @@
 
     let newImages = document.getElementsByClassName("imageHangman")[0];
 
+    function animate() {
+        // affichage des images en fonction des des erreurs
+        // gallery[cptGallery + 1];
+        // nombre de vies -1
 
-    // boucle pour l'affichage du pendu
 
-    // error8() {
-    //     // 8ème erreur, affichage de l'image hangman.png
-    //     gallery[7];
-    //     // affichage du compteur d'erreurs possibles restantes "nombre d'erreurs encore possibles : 0"
-    //     error++;
-    //     // affichage "You lose"
-    //     .innerHTML = "Sorry, you lose. Let's try again !";
-    //     // affichage du mot à trouver
-    //     .innerHTML = "Le mot à trouver était : " + secretTown;
-    //     // arrêter le jeu, griser toutes les lettres et les rendre incliquables
 
-    // };
+    }
 
-    // quand on clique sur une lettre, récupérer la lettre
-    // et faire la recherche secretTown.forEach(element)
+    // fin du jeu, plus de vie ou trouvé toutes les lettres
+    function fin() {
+        // disabled toutes les lettres restantes
+        // button.disabled = true;
+        // la seule chose qu'on peut faire c'est cliquer sur le bouton newPart
 
-    // boucle compteur error
-    // si la lettre n'est pas dans le mot
-    // secretTown.forEach(element => {
-    //     if (element pas dans secretTown) {
-    //         gallery[cptGallery + 1];
-    //         error++;
-    //     } else if (element dans secretTown) {
-    //         afficher la lettre au bon endroit dans le mot;
-    //         appel de la fonction de choix;
-    //     }
-    // });
 
-    // if (error == 8) {
-    //     error8;
-    //     perdu;
-    // }
 
-    // quelle que soit la lettre, bonne ou mauvaise, sélectionnée, griser la lettre choisie
-    // quand c'est onClick
-    // this.disabled = true;
 
-    function check() {
-        list.onclick = () => {
-            let guess = (this.innerHTML);
-            this.setAttribute("class", "active");
-            this.onclick = null;
-            for (let i = 0; i < motSplite.length; i++) {
-                if (motSplite[i] === guess) {
-                    guesses[i].innerHTML = guess;
-                    counter++;
-                }
-            }
-            let j = motSplite.indexOf(guess);
-            if (j === -1) {
-                lives--;
-                comments();
-                animate();
-            } else {
-                comments();
-            }
-        }
+
     }
 
 
+    // montre le nombre de vies restantes et affiche Win ou Lose
+    function comments() {
+        // nombre de vies et fin
+        showLives.innerHTML = "You have " + lives + " lives";
+        if ((lives < 1) && (space > 0)) {
+            showLives.innerHTML = "Game Over...";
+            fin();
+        }
+        if ((lives > 0) && (space < 1)) {
+            showLives.innerHTML = "You Win!";
+            fin();
+        }
+    }
+
+    // teste les lettres proposées
+    function check(test) {
+        let counter = 0;
+        for (let i = 0; i < motSplite.length; i++) {
+            // si la lettre est dans le mot,
+            // alors afficher la lettre à l'indice où est la lettre
+            if (motSplite[i] === test) {
+                // si true mettre la lettre au bon endroit
+                // motSplite[i] doit être dans innerHTML
+                document.getElementById(motSplite[i] + i).innerHTML = test;
+                counter++;
+                space--;
+            }
+            comments();
+        }
+        // si la boucle n'a pas trouvé la lettre, le counter reste à 0, on perd 1 vie
+        if (counter == 0) {
+            lives--;
+            comments();
+        }
+    }
 
     // afficher l'alphabet cliquable
     function letterscliquable() {
@@ -111,23 +106,39 @@
         for (let i = 0; i < alphabet.length; i++) {
             letters.id = 'alphabet';
             list = document.createElement('button');
+            // récupère la valeur lettre du bouton
+            list.id = alphabet[i];
             list.className = "ltr";
             list.innerHTML = alphabet[i];
             check();
             myLetters.appendChild(letters);
             letters.appendChild(list);
         }
-
+        // prend chaque button de l'alphabet créé comme un ensemble dans mon array
         const selector = document.querySelectorAll('.ltr');
+        console.log(selector);
         selector.forEach(button => {
-            document.getElementById('alphabetACliquer').addEventListener("click", () => {
-                // return la lettre cliquée
+            button.addEventListener("click", () => {
+                // récupération du button
+                const userChoice = button.id;
+                console.log(userChoice);
+                // le bouton n'est plus cliquable
+                button.disabled = true;
+                // appel de la fonction check pour vérifier si la lettre y est
+                check(userChoice);
             });
         });
+
     }
 
     // met en place le hangman pour pouvoir le jouer
     function play() {
+
+        let newPart = document.getElementById('newPart');
+        let beginNew = document.getElementById('beginNew');
+        newPart.style.display = 'block';
+        beginNew.style.display = 'none';
+
         // efface l'image de bienvenue pour laisser place au jeu
         imgWelcome.style.display = "none";
         // affiche l'alphabet à jouer
@@ -147,27 +158,12 @@
             hole.innerHTML = `<p id="${motSplite[i]+i}"></p>`;
             document.getElementById("toFind").appendChild(hole);
         }
-        // appel de la fonction check pour vérifier si la lettre y est
-        check();
 
-
-
-
-
-
-
-
-
-
-        // essais
-        guesses = [];
         // nombre de vies restantes
         lives = 8;
-        counter = 0;
-        space = 0;
+        space = motSplite.length;
         // result();
-        // comments();
-        // canvas();
+        comments();
     }
 
     document.getElementById("beginNew").addEventListener("click", () => {
