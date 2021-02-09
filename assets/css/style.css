@@ -1,11 +1,14 @@
-.megabloc {
-    background-color: #cda5f3;
-    border: 1px solid #000000;
-    border-radius: 5px;
+.char input[type=button] {
+    font - size: 1.3e m;
+    padding: 5 px;
 }
 
-.blocunique {
-    background-color: #cda5f3;
-    border: 1px solid #000000;
-    border-radius: 5px;
+.bottom {
+    margin - top: 10 px;
+}
+
+.reset {
+    margin - bottom: 5 px;
+    font - size: 1.3e m;
+    padding: 5 px;
 }

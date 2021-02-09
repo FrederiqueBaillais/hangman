@@ -32,12 +32,20 @@
         <!-- Jeu en lui-même -->
         <div class='row'>
             <div class='col-4 col-md-4 alphabet'>
-                Lettre de l'alphabet à proposer
-                <div class="btn-primary"></div>
-                <div class="btn-secondary"></div>
+                <!-- (B2) AVAILABLE CHARACTERS -->
+                <div class="char">
+
+                </div>
+                <!-- (B3) RESET & LIVES -->
+                <div class="bottom">
+                    <input type="button" value="Reset" id="reset" disabled/>
+                    <div>
+                        Erreurs possibles restantes: <span id="lifes"></span>
+                    </div>
+                </div>
             </div>
             <div class='col-8 col-md-8 imageHangman'>
-                <img src="assets/img/welcome.png" style="width: 100%;" alt="Welcome to the hangman">
+                <img src="assets/img/welcome.png" style="width: 100%;" alt="Welcome to the hangman-game">
             </div>
         </div>
 
