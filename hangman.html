@@ -13,46 +13,70 @@
 
 <body>
     <!-- Si j'utilise bootstrap, TOUJOURS mettre le link dans le head !! -->
-    <div class="container padding:20px;margin-left:30px">
-        <!-- Titre de la page -->
-        <div class='row text-center'>
-            <div class='col col-md-12'>
-                <h1>Le pendu (Hangman)</h1>
-            </div>
-        </div>
+    <div class="container-fluid">
 
-        <!-- Instructions -->
-        <div class='row text-center'>
-            <div class='col col-md-12'>
-                <h2 id="regle">Règles du jeu</h2>
-                <p id="consigne">Deviner le mot proposé. Attention : 8 erreurs possibles avant de perdre !</p>
-                <p id="indice">Indice : <span id="pays">Pays</span></p>
-
-            </div>
-        </div>
-
-        <!-- Jeu en lui-même -->
-        <div class='row'>
-            <div class='col-2 col-md-2 alphabet'>
-                <!-- Commencer la partie et nombre de vies restantes -->
-                <div class="informations">
-                    <button id="beginNew">Nouvelle partie</button><button id="newPart">Recharger une partie</button>
-                    <div>
-                        <span id="lives"></span>
-                    </div>
-                    <div class="text-center" id="alphabetACliquer"></div>
+        <header>
+            <!-- Titre de la page -->
+            <div class='row text-center' id="titre">
+                <div class='col col-md-12'>
+                    <h1>Le pendu (Hangman)</h1>
                 </div>
             </div>
-            <div class='col-10 col-md-10 d-flex flex-column justify-content-center align-items-center' id='imageHangman'>
-                <div id='toFind' class='d-flex text-center'></div>
-                <img src="assets/img/welcome.png" id="welcome" alt="Welcome to the hangman-game">
-                <img src='assets/img/welcome.png' id='pendu' alt="Let's begin the hangman-game">
+            <audio src="assets/audio/dead.ogg" autoplay></audio>
+        </header>
+
+        <main>
+            <!-- Instructions -->
+            <div class='row text-center' id="instructions">
+                <div class='col col-md-12'>
+                    <h2>Règles du jeu</h2>
+                    <p>Deviner le mot proposé. Attention : 8 erreurs possibles avant de perdre !</p>
+                    <p id="indice">Indice : Pays</p>
+
+                </div>
             </div>
-        </div>
+
+            <!-- Jeu en lui-même -->
+            <div class='row' id="toPlay">
+                <div class='col-12 col-md-2 alphabet'>
+                    <!-- Commencer la partie et nombre de vies restantes -->
+                    <div id="informations">
+                        <button id="beginNew">Nouvelle partie</button><button id="newPart">Recharger une partie</button>
+                        <div>
+                            <span id="lives"></span>
+                        </div>
+                        <div class="text-center" id="alphabetACliquer"></div>
+                    </div>
+                </div>
+                <div class='col-12 col-md-10 d-flex flex-column justify-content-center align-items-center' id='imageHangman'>
+                    <div id='toFind' class='d-flex text-center'></div>
+                    <img src="assets/img/welcome.png" id="welcome" alt="Welcome to the hangman-game">
+                    <img src='assets/img/welcome.png' id='pendu' alt="Let's begin the hangman-game">
+                </div>
+            </div>
+
+            <!-- Score de bas de page -->
+            <div class='row text-center' id="basDePage">
+                <div class='col col-md-12'>
+                    <h1>Votre score est de : 100 points</h1>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <div class='row text-center' id="footer">
+                <div class='col col-md-12'>
+                    <h1>Merci d'avoir joué au Hangman</h1>
+                </div>
+                <div class='col col-md-12'>
+                    <h1 id="copyright">(c) FreBa, Junior Developper @ BeCode</h1>
+                </div>
+            </div>
+            <script src="assets/js/script.js"></script>
+        </footer>
 
     </div>
-
-    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

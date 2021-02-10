@@ -64,8 +64,7 @@
         showLives.innerHTML = "Vous avez " + lives + " vies.";
         // si l'utilisateur n'a plus de vie et qu'il y a encore des espaces vides à trouver, RATÉ
         if ((lives < 1) && (space > 0)) {
-            mot.id = "capitalize";
-            showLives.innerHTML = "Game Over... Le mot était " + mot;
+            showLives.innerHTML = "Game Over... Le mot était : " + mot.toUpperCase();
             fin();
         }
         // sinon si l'utilisateur a encore des vies et qu'il n'y a plus d'espaces vides à trouver, GAGNÉ
