@@ -9,3 +9,12 @@
 #newPart {
     display: none;
 }
+
+#toFind {
+    text-align: center;
+}
+
+#pendu {
+    width: 25%;
+    display: none;
+}

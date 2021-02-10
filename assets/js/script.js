@@ -2,19 +2,22 @@
     let error = 0; // pour le compteur des erreurs
     let cptGallery = 0; // pour le compteur des images à afficher pour le hangman
     const imgWelcome = document.getElementById("welcome"); // image de bienvenue
+    let imgPendu = document.getElementById("pendu"); // images pour l'affichage du pendu
     const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; // alphabet à cliquer
     let motSplite = []; // array des lettres du mot à trouver
     let showLives = document.getElementById("lives");
     let gallery = [ // caroussel d'images du hangman en fonction des erreurs commises par l'utilisateur
-        "assets/img/hangman7.png",
-        "assets/img/hangman6.png",
-        "assets/img/hangman5.png",
-        "assets/img/hangman4.png",
-        "assets/img/hangman3.png",
-        "assets/img/hangman2.png",
-        "assets/img/hangman1.png",
         "assets/img/hangman0.png",
+        "assets/img/hangman1.png",
+        "assets/img/hangman2.png",
+        "assets/img/hangman3.png",
+        "assets/img/hangman4.png",
+        "assets/img/hangman5.png",
+        "assets/img/hangman6.png",
+        "assets/img/hangman7.png",
     ];
+    let lives; // nombre de vies
+    let space; // nombres d'espaces restants dans le mot à trouver
 
 
     // choix aléatoire du pays à trouver
@@ -37,39 +40,9 @@
     }
 
     function animate() {
-        // affichage des images en fonction des des erreurs
-        // gallery[cptGallery + 1];
-        // nombre de vies -1
-        //newImages = gallery[i];
-        //console.log(newImages2);
-        // afficher en fonction du nombre de vies restantes
-        console.log(lives);
-        if (lives === 7) {
-            console.log('lives = 7');
-            document.getElementById('pendu').innerHTML = gallery[0];
-
-        }
-        //     if (lives == 6) {
-        //         document.getElementById('welcome').innerHTML = gallery[1];
-        //     }
-        //     if (lives == 5) {
-        //         document.getElementById('welcome').innerHTML = gallery[2];
-        //     }
-        //     if (lives == 4) {
-        //         document.getElementById('welcome').innerHTML = gallery[3];
-        //     }
-        //     if (lives == 3) {
-        //         document.getElementById('welcome').innerHTML = gallery[4];
-        //     }
-        //     if (lives == 2) {
-        //         document.getElementById('welcome').innerHTML = gallery[5];
-        //     }
-        //     if (lives == 1) {
-        //         document.getElementById('welcome').innerHTML = gallery[6];
-        //     }
-        //     if (lives == 0) {
-        //         document.getElementById('welcome').innerHTML = gallery[7];
-        //     }
+        // afficher les images en fonction du nombre de vies restantes
+        imgPendu.style.display = "block";
+        imgPendu.src = gallery[lives];
     }
 
     // fin du jeu, plus de vie ou trouvé toutes les lettres
@@ -183,6 +156,7 @@
 
         // nombre de vies restantes
         lives = 8;
+        // nombre d'espaces libres dans le mot
         space = motSplite.length;
         // result();
         comments();
@@ -190,6 +164,7 @@
 
     document.getElementById("newPart").addEventListener("click", () => {
         document.location.reload();
+        imgPendu.style.display = 'block';
     });
 
     document.getElementById("beginNew").addEventListener("click", () => {
