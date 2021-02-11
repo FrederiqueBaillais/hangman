@@ -110,16 +110,6 @@
                 // appel de la fonction check pour vérifier si la lettre y est
                 check(userChoice);
             });
-            // touches du clavier de 65 à 90 compris
-            /*window.addEventListener("keydown", () => {
-                // récupération du button
-                const userChoice = button.id;
-                console.log(userChoice);
-                // le bouton n'est plus cliquable
-                button.disabled = true;
-                // appel de la fonction check pour vérifier si la lettre y est
-                check(userChoice);
-            });*/
         });
     }
 
@@ -149,15 +139,10 @@
         beginNew.style.display = 'none';
 
         // efface l'image de bienvenue pour laisser place au jeu
-        imgWelcome.style.display = "none";
-        imgPendu.style.display = "block";
+        imgWelcome.style.display = 'none';
+        imgPendu.style.display = 'block';
         // affiche l'alphabet à jouer
         letterscliquable();
-        // quand on entre les touches du clavier au lieu de lettres cliquables
-        /*window.addEventListener('keydown', (touche) => {
-            check(touche.key);
-            desactivation();
-        });*/
         // va chercher le mot à trouver
         mot = randomTown();
         // sélectionne chaque caractère du mot à trouver en lettre et les insère dans un tableau
@@ -178,12 +163,12 @@
     }
 
     // relance la page en cas de clic qur le bouton Recharger pour une nouvelle partie
-    document.getElementById("newPart").addEventListener("click", () => {
+    document.getElementById("newPart").addEventListener('click', () => {
         document.location.reload();
         imgPendu.style.display = 'block';
     });
 
     // lance une toute nouvelle partie au lancement de la page
-    document.getElementById("beginNew").addEventListener("click", () => {
+    document.getElementById("beginNew").addEventListener('click', () => {
         play();
     });
