@@ -63,6 +63,11 @@
     display: none;
 }
 
+img {
+    max-width: 70vw;
+    height: auto;
+}
+
 #pendu,
 #welcome {
     padding-bottom: 30px;
