@@ -70,6 +70,10 @@
     height: auto;
 }
 
+#score {
+    color: black;
+}
+
 .ltr {
     border-radius: 15px;
     margin: 5px;
